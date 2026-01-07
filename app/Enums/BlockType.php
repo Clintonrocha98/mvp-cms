@@ -7,6 +7,11 @@ enum BlockType: string
     case Hero = 'hero';
     case Text = 'text';
     case CTA = 'cta';
+    case Form = 'form';
+    case Features = 'features';
+    case Testimonials = 'testimonials';
+    case Logos = 'logos';
+    case Image = 'image';
 
     public function label(): string
     {
@@ -14,15 +19,24 @@ enum BlockType: string
             self::Hero => 'Hero',
             self::Text => 'Texto',
             self::CTA => 'Call to Action',
+            self::Form => 'Formulário',
+            self::Features => 'Recursos',
+            self::Testimonials => 'Depoimentos',
+            self::Logos => 'Logos',
+
         };
     }
 
     public static function options(): array
     {
-        return collect(self::cases())
-            ->mapWithKeys(fn($case) => [
-                $case->value => ucfirst($case->value),
-            ])
-            ->toArray();
+        return [
+            self::Hero->value => self::Hero->label(),
+            self::Text->value => self::Text->label(),
+            self::CTA->value => self::CTA->label(),
+            self::Form->value => self::Form->label(),
+            self::Features->value => self::Features->label(),
+            self::Testimonials->value => self::Testimonials->label(),
+            self::Logos->value => self::Logos->label(),
+        ];
     }
 }

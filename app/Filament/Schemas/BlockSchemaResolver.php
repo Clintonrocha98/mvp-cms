@@ -12,6 +12,11 @@ final class BlockSchemaResolver
             BlockType::Hero => HeroBlockSchema::schema(),
             BlockType::Text => TextBlockSchema::schema(),
             BlockType::CTA => CtaBlockSchema::schema(),
+            BlockType::Features => FeaturesBlockSchema::schema(),
+            BlockType::Form => FormBlockSchema::schema(),
+            BlockType::Testimonials => TestimonialsBlockSchema::schema(),
+            BlockType::Logos => LogosBlockSchema::schema(),
+            BlockType::Image => ImageBlockSchema::schema(),
         };
     }
 }

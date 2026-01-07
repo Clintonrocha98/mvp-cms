@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\BlockDataCast;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +15,7 @@ class PageBlock extends Model
     protected function casts(): array
     {
         return [
-            'data' => 'array',
+            'data' => BlockDataCast::class,
         ];
     }
 }

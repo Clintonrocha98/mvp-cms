@@ -17,7 +17,6 @@ final class FormBlockSchema implements BlockSchema
                 ->label('Formulário')
                 ->options([
                     'contact' => 'Contato',
-                    'lead' => 'Captura de Lead',
                 ])
                 ->required(),
 

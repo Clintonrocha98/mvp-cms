@@ -3,8 +3,16 @@
 namespace App\Casts;
 
 use App\Contract\BlockData;
+use App\ValueObjects\AnchorsBlockData;
 use App\ValueObjects\CtaBlockData;
+use App\ValueObjects\DividerBlockData;
+use App\ValueObjects\FeaturesBlockData;
+use App\ValueObjects\FooterBlockData;
+use App\ValueObjects\FormBlockData;
 use App\ValueObjects\HeroBlockData;
+use App\ValueObjects\ImageBlockData;
+use App\ValueObjects\LogosBlockData;
+use App\ValueObjects\TestimonialsBlockData;
 use App\ValueObjects\TextBlockData;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 
@@ -18,6 +26,15 @@ class BlockDataCast implements CastsAttributes
             'hero' => HeroBlockData::fromArray($data),
             'text' => TextBlockData::fromArray($data),
             'cta' => CtaBlockData::fromArray($data),
+            'form' => FormBlockData::fromArray($data),
+            'features' => FeaturesBlockData::fromArray($data),
+            'testimonials' => TestimonialsBlockData::fromArray($data),
+            'logos' => LogosBlockData::fromArray($data),
+            'image' => ImageBlockData::fromArray($data),
+            'anchors' => AnchorsBlockData::fromArray($data),
+            'divider' => DividerBlockData::fromArray($data),
+            'footer' => FooterBlockData::fromArray($data),
+
         };
     }
 

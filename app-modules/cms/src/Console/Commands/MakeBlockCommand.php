@@ -24,31 +24,32 @@ class MakeBlockCommand extends Command
         $name = Str::studly($this->argument('name'));
         $slug = Str::kebab($name);
 
-        $blockPath = base_path("app-modules/cms/src/Blocks/{$name}");
-        $viewPath = base_path("app-modules/cms/resources/views/components/blocks/{$slug}");
+        $blockPath = base_path('app-modules/cms/src/Blocks/' . $name);
+        $viewPath = base_path('app-modules/cms/resources/views/components/blocks/' . $slug);
 
-        if ($files->exists($blockPath) && !$this->option('force')) {
-            $this->components->error("Block {$name} already exists.");
+        if ($files->exists($blockPath) && ! $this->option('force')) {
+            $this->components->error(sprintf('Block %s already exists.', $name));
+
             return self::FAILURE;
         }
 
         $variants = $this->option('variants')
-            ? array_map('trim', explode(',', $this->option('variants')))
+            ? array_map(trim(...), explode(',', $this->option('variants')))
             : ['default'];
 
         $files->makeDirectory($blockPath, 0755, true);
         $files->makeDirectory($viewPath, 0755, true);
 
-        $this->makeFromStub($files, 'block.stub', "{$blockPath}/{$name}Block.php", [
+        $this->makeFromStub($files, 'block.stub', sprintf('%s/%sBlock.php', $blockPath, $name), [
             'name' => $name,
             'slug' => $slug,
         ]);
 
-        $this->makeFromStub($files, 'data.stub', "{$blockPath}/{$name}Data.php", [
+        $this->makeFromStub($files, 'data.stub', sprintf('%s/%sData.php', $blockPath, $name), [
             'name' => $name,
         ]);
 
-        $this->makeFromStub($files, 'schema.stub', "{$blockPath}/{$name}Schema.php", [
+        $this->makeFromStub($files, 'schema.stub', sprintf('%s/%sSchema.php', $blockPath, $name), [
             'name' => $name,
             'slug' => $slug,
         ]);
@@ -57,7 +58,7 @@ class MakeBlockCommand extends Command
             $this->makeFromStub(
                 $files,
                 'view.stub',
-                "{$viewPath}/{$variant}.blade.php",
+                sprintf('%s/%s.blade.php', $viewPath, $variant),
                 [
                     'name' => $name,
                     'slug' => $slug,
@@ -66,7 +67,7 @@ class MakeBlockCommand extends Command
             );
         }
 
-        $this->components->info("CMS block {$name} created successfully.");
+        $this->components->info(sprintf('CMS block %s created successfully.', $name));
         $this->line('');
         $this->line('Created files:');
 
@@ -83,7 +84,7 @@ class MakeBlockCommand extends Command
         string $target,
         array $data
     ): void {
-        $stubPath = base_path("app-modules/cms/stubs/{$stub}");
+        $stubPath = base_path('app-modules/cms/stubs/' . $stub);
 
         $content = $files->get($stubPath);
 

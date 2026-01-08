@@ -25,22 +25,22 @@ class MakeVariantCommand extends Command
         $variant = Str::kebab($this->argument('variant'));
 
         $viewPath = base_path(
-            "app-modules/cms/resources/views/components/blocks/{$block}"
+            'app-modules/cms/resources/views/components/blocks/' . $block
         );
 
-        if (!$files->isDirectory($viewPath)) {
-            $this->components->error("Block '{$block}' does not exist.");
+        if (! $files->isDirectory($viewPath)) {
+            $this->components->error(sprintf("Block '%s' does not exist.", $block));
+
             return self::FAILURE;
         }
 
-        $target = "{$viewPath}/{$variant}.blade.php";
+        $target = sprintf('%s/%s.blade.php', $viewPath, $variant);
 
-        if ($files->exists($target) && !$this->option('force')) {
-            $this->components->error("Variant '{$variant}' already exists.");
+        if ($files->exists($target) && ! $this->option('force')) {
+            $this->components->error(sprintf("Variant '%s' already exists.", $variant));
+
             return self::FAILURE;
         }
-
-        $created = [];
 
         $this->makeFromStub(
             $files,
@@ -54,7 +54,7 @@ class MakeVariantCommand extends Command
         );
 
         $this->components->info(
-            "Variant '{$variant}' created for block '{$block}'."
+            sprintf("Variant '%s' created for block '%s'.", $variant, $block)
         );
 
         $this->line('');
@@ -73,7 +73,7 @@ class MakeVariantCommand extends Command
         string $target,
         array $data
     ): void {
-        $stubPath = base_path("app-modules/cms/stubs/{$stub}");
+        $stubPath = base_path('app-modules/cms/stubs/' . $stub);
 
         $content = $files->get($stubPath);
 

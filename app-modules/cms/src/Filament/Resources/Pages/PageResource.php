@@ -5,18 +5,22 @@ declare(strict_types=1);
 namespace ClintonRocha\CMS\Filament\Resources\Pages;
 
 use BackedEnum;
+use ClintonRocha\CMS\Enums\BlockType;
 use ClintonRocha\CMS\Filament\Resources\Pages\Pages\CreatePage;
 use ClintonRocha\CMS\Filament\Resources\Pages\Pages\EditPage;
 use ClintonRocha\CMS\Filament\Resources\Pages\Pages\EditPageContent;
 use ClintonRocha\CMS\Filament\Resources\Pages\Pages\ListPages;
+use ClintonRocha\CMS\Filament\Schemas\BlockSchemaResolver;
 use ClintonRocha\CMS\Models\Page;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -40,7 +44,7 @@ class PageResource extends Resource
                     ->required()
                     ->live(onBlur: true)
                     ->afterStateUpdated(
-                        fn (?string $state, Set $set) => $set('slug', Str::slug($state))
+                        fn(?string $state, Set $set) => $set('slug', Str::slug($state))
                     ),
 
                 TextInput::make('slug')
@@ -48,13 +52,24 @@ class PageResource extends Resource
                     ->required()
                     ->dehydrated(),
 
-                TextEntry::make('created_at')
-                    ->label('Created Date')
-                    ->dateTime(),
+                Repeater::make('blocks')
+                    ->relationship()
+                    ->orderable('position')
+                    ->schema([
+                        Select::make('type')
+                            ->options(BlockType::class)
+                            ->required()
+                            ->reactive(),
 
-                TextEntry::make('updated_at')
-                    ->label('Last Modified Date')
-                    ->dateTime(),
+                        Group::make(fn($get) => $get('type')
+                            ? BlockSchemaResolver::resolve($get('type'))
+                            : []
+                        )->reactive(),
+                    ])
+                    ->collapsed()
+                    ->cloneable()
+                    ->columnSpanFull()
+                    ->defaultItems(0),
             ]);
     }
 
@@ -70,9 +85,11 @@ class PageResource extends Resource
                     ->searchable()
                     ->sortable(),
 
-            ])
-            ->filters([
-                //
+                TextColumn::make('blocks_count')
+                    ->label('Blocks')
+                    ->counts('blocks')
+                    ->sortable(),
+
             ])
             ->recordActions([
                 EditAction::make(),
@@ -91,12 +108,6 @@ class PageResource extends Resource
             'index' => ListPages::route('/'),
             'create' => CreatePage::route('/create'),
             'edit' => EditPage::route('/{record}/edit'),
-            'content' => EditPageContent::route('/{record}/content'),
         ];
-    }
-
-    public static function getGloballySearchableAttributes(): array
-    {
-        return ['title', 'slug'];
     }
 }

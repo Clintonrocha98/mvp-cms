@@ -13,3 +13,13 @@ pint: ## Run Pint code style fixer
 .PHONY: rector
 rector: ## Run Rector
 	@$(CURDIR)/vendor/bin/rector process
+
+.PHONY: setup
+setup: ## Setup the project
+	@composer install
+	@npm install
+	@composer run-script post-root-package-install
+	@composer run-script post-create-project-cmd
+	@php artisan key:generate --ansi
+	@php artisan storage:link --ansi
+	@composer run-script ide-helper

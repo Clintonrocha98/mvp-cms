@@ -11,12 +11,13 @@ use Illuminate\Contracts\View\View;
 
 class PagePreviewController extends Controller
 {
-    public function show(int $id): Factory|View
+    public function show(string $slug): Factory|View
     {
         $page = Page::query()
             ->with('blocks')
-            ->findOrFail($id);
+            ->whereSlug($slug)
+            ->first();
 
-        return view('pages.preview', ['page' => $page]);
+        return view('cms::pages.preview', ['page' => $page]);
     }
 }

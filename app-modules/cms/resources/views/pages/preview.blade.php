@@ -3,7 +3,7 @@
         //TODO: colocar 'cms::' em uma config para caso tenha mudança de modulo ou algo do tipo
     @endphp
     <x-dynamic-component
-        :component="'cms::'.$block->data->view()"
-        :data="$block->data"
+        :component="'cms::'.$block->pageContent()->view()"
+        :data="$block->pageContent()"
     />
 @endforeach

@@ -6,7 +6,7 @@ namespace ClintonRocha\CMS\ValueObjects;
 
 use ClintonRocha\CMS\Contracts\BlockData;
 
-final readonly class TextBlockData implements BlockData
+final class TextBlockData implements BlockData
 {
     public function __construct(
         public string $text,
@@ -49,10 +49,10 @@ final readonly class TextBlockData implements BlockData
     public function toArray(): array
     {
         return [
-            'text' => $this->text,
-            'variant' => $this->variant,
-            'width' => $this->width,
-            'align' => $this->align,
+            'text' => $this->text ?? '',
+            'variant' => $this->variant ?? 'simple',
+            'width' => $this->width ?? 'normal',
+            'align' => $this->align ?? 'left',
         ];
     }
 }

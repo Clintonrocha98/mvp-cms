@@ -13,7 +13,7 @@ return new class extends Migration
         Schema::create('page_blocks', function (Blueprint $table): void {
             $table->id();
             $table->string('page_id');
-            $table->string('position');
+            $table->unsignedInteger('position')->index();
             $table->json('data');
             $table->string('type');
             $table->timestamps();

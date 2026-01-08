@@ -44,11 +44,18 @@
     "scripts": {
         "setup": [
             "composer install",
+            "npm install",
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
             "@php artisan key:generate",
             "@php artisan migrate --force",
-            "npm install",
-            "npm run build"
+            "@php artisan storage:link --ansi",
+            "npm run build",
+            "composer run-script ide-helper"
+        ],
+        "ide-helper": [
+            "@php artisan ide-helper:generate -q",
+            "@php artisan ide-helper:meta -q",
+            "@php artisan ide-helper:models -q -N --dir='app-modules/*/src/Models' --dir='app/Models'"
         ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",

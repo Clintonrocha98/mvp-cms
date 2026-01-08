@@ -16,12 +16,6 @@ class EditPage extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Action::make('content')
-                ->label('Editar conteúdo')
-                ->url(fn () => static::getResource()::getUrl(
-                    'content',
-                    ['record' => $this->record]
-                )),
             DeleteAction::make(),
         ];
     }

@@ -1,11 +1,8 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\Login;
-use ClintonRocha\CMS\Filament\Resources\Pages\PageResource;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -23,24 +20,23 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-class AdminPanelProvider extends PanelProvider
+class CmsPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->default()
-            ->id('admin')
-            ->path('admin')
+            ->id('cms')
+            ->path('cms')
             ->login(Login::class)
             ->colors([
                 'primary' => Color::Amber,
             ])
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
+            ->discoverResources(in: app_path('Filament/Cms/Resources'), for: 'App\Filament\Cms\Resources')
+            ->discoverPages(in: app_path('Filament/Cms/Pages'), for: 'App\Filament\Cms\Pages')
             ->pages([
                 Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
+            ->discoverWidgets(in: app_path('Filament/Cms/Widgets'), for: 'App\Filament\Cms\Widgets')
             ->widgets([
                 AccountWidget::class,
                 FilamentInfoWidget::class,

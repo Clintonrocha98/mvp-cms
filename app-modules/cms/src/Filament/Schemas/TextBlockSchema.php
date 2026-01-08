@@ -8,6 +8,8 @@ use ClintonRocha\CMS\Contracts\BlockSchema;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Utilities\Get;
 
 final class TextBlockSchema implements BlockSchema
 {
@@ -20,7 +22,15 @@ final class TextBlockSchema implements BlockSchema
                     'simple' => 'Texto simples',
                     'rich' => 'Texto rico',
                 ])
-                ->required(),
+                ->default('simple')
+                ->required()
+                ->live()
+                ->afterStateUpdated(fn(Select $component) => $component
+                    ->getContainer()
+                    ->getComponent('textVariantFields')
+                    ->getChildSchema()
+                    ->fill()
+                ),
 
             Select::make('data.width')
                 ->label('Largura')
@@ -29,6 +39,7 @@ final class TextBlockSchema implements BlockSchema
                     'normal' => 'Normal',
                     'wide' => 'Larga',
                 ])
+                ->required()
                 ->default('normal'),
 
             Select::make('data.align')
@@ -37,18 +48,25 @@ final class TextBlockSchema implements BlockSchema
                     'left' => 'Esquerda',
                     'center' => 'Centralizado',
                 ])
+                ->required()
                 ->default('left'),
 
-            Textarea::make('data.text')
-                ->label('Conteúdo')
-                ->rows(6)
-                ->required()
-                ->visible(fn ($get) => $get('data.variant') === 'simple'),
+            Grid::make()
+                ->schema(fn(Get $get): array => match ($get('data.variant')) {
+                    'rich' => [
+                        RichEditor::make('data.text')
+                            ->label('Conteúdo')
+                            ->required(),
+                    ],
+                    default => [
+                        Textarea::make('data.text')
+                            ->label('Conteúdo')
+                            ->rows(6)
+                            ->required(),
+                    ],
+                })
+                ->key('textVariantFields'),
 
-            RichEditor::make('data.text')
-                ->label('Conteúdo')
-                ->required()
-                ->visible(fn ($get) => $get('data.variant') === 'rich'),
         ];
 
     }

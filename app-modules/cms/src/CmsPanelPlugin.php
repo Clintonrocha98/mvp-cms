@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ClintonRocha\CMS;
 
 use ClintonRocha\CMS\Filament\Resources\Pages\PageResource;
@@ -17,14 +19,12 @@ class CmsPanelPlugin implements Plugin
     public function register(Panel $panel): void
     {
         $panel->resources([
-            PageResource::class
+            PageResource::class,
         ])->colors([
             'primary' => Color::Blue,
-            ...Color::all()
+            ...Color::all(),
         ]);
     }
 
-    public function boot(Panel $panel): void
-    {
-    }
+    public function boot(Panel $panel): void {}
 }

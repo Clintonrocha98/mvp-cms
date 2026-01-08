@@ -17,7 +17,7 @@ final class AnchorsBlockSchema implements BlockSchema
         return [
             Select::make('data.variant')
                 ->label('Estilo')
-                ->options(fn()=>BlockRegistry::resolve('anchors')::variants())
+                ->options(fn () => BlockRegistry::resolve('anchors')::variants())
                 ->default('menu')
                 ->required(),
 

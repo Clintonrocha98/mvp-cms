@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ClintonRocha\CMS\ValueObjects;
 
 use ClintonRocha\CMS\Contracts\BlockData;

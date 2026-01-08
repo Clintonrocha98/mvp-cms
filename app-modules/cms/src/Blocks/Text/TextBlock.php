@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace ClintonRocha\CMS\Blocks\Text;
@@ -38,8 +39,8 @@ final class TextBlock implements BlockDefinition
 
     public static function view(BlockData $data): string
     {
-        //TODO: toda view precisa ter 'cms::blocks.' preciso garantir isso em todos os blocks!
+        // TODO: toda view precisa ter 'cms::blocks.' preciso garantir isso em todos os blocks!
         /** @var TextData $data */
-        return "cms::blocks.text.{$data->variant}";
+        return 'cms::blocks.text.' . $data->variant;
     }
 }

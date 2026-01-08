@@ -1,10 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace ClintonRocha\CMS\Blocks\Hero;
 
-use ClintonRocha\CMS\Contracts\BlockDefinition;
 use ClintonRocha\CMS\Contracts\BlockData;
+use ClintonRocha\CMS\Contracts\BlockDefinition;
 use ClintonRocha\CMS\Models\PageBlock;
 
 final class HeroBlock implements BlockDefinition

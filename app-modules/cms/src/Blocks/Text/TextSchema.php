@@ -23,7 +23,7 @@ final class TextSchema implements BlockSchema
                 ->required()
                 ->default('simple')
                 ->live()
-                ->afterStateUpdated(fn(Select $component) => $component
+                ->afterStateUpdated(fn (Select $component) => $component
                     ->getContainer()
                     ->getComponent('textVariantFields')
                     ->getChildSchema()
@@ -50,7 +50,7 @@ final class TextSchema implements BlockSchema
                 ->default('left'),
 
             Grid::make()
-                ->schema(fn(Get $get): array => match ($get('data.variant')) {
+                ->schema(fn (Get $get): array => match ($get('data.variant')) {
                     'rich' => [
                         RichEditor::make('data.text')
                             ->label('Conteúdo')

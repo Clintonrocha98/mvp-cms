@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace ClintonRocha\CMS\Database\Factories;
 
-use Illuminate\Support\Facades\Date;
 use ClintonRocha\CMS\Models\Page;
 use ClintonRocha\CMS\Models\PageBlock;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Date;
 
 /**
  * @extends Factory<Page>

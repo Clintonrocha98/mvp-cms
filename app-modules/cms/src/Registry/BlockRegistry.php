@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ClintonRocha\CMS\Registry;
 
 use ClintonRocha\CMS\Contracts\BlockDefinition;
@@ -12,11 +14,9 @@ final class BlockRegistry
     {
         $studly = Str::studly($type);
 
-        $class = "ClintonRocha\\CMS\\Blocks\\{$studly}\\{$studly}Block";
+        $class = sprintf('ClintonRocha\CMS\Blocks\%s\%sBlock', $studly, $studly);
 
-        if (!class_exists($class)) {
-            throw new InvalidArgumentException("Block {$type} não encontrado");
-        }
+        throw_unless(class_exists($class), InvalidArgumentException::class, sprintf('Block %s não encontrado', $type));
 
         return new $class;
     }
@@ -26,7 +26,7 @@ final class BlockRegistry
         $base = base_path('app-modules/cms/src/Blocks');
 
         return collect(glob($base.'/*/*Block.php'))
-            ->mapWithKeys(function ($path) {
+            ->mapWithKeys(function (string $path): array {
                 /** @var BlockDefinition $class */
                 $class = self::classFromPath($path);
 
@@ -34,10 +34,10 @@ final class BlockRegistry
                     $class::type() => $class::label(),
                 ];
             })
-            ->toArray();
+            ->all();
     }
 
-    protected static function classFromPath(string $path): string
+    private static function classFromPath(string $path): string
     {
         $path = realpath($path);
 
@@ -46,9 +46,9 @@ final class BlockRegistry
         $relative = str_replace($srcPath.DIRECTORY_SEPARATOR, '', $path);
 
         return 'ClintonRocha\\CMS\\'.str_replace(
-                [DIRECTORY_SEPARATOR, '.php'],
-                ['\\', ''],
-                $relative
-            );
+            [DIRECTORY_SEPARATOR, '.php'],
+            ['\\', ''],
+            $relative
+        );
     }
 }

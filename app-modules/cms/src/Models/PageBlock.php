@@ -19,13 +19,6 @@ class PageBlock extends Model
 
     protected $fillable = ['page_id', 'type', 'position', 'data'];
 
-    protected function casts(): array
-    {
-        return [
-            'data' => 'array',
-        ];
-    }
-
     public function content(): BlockData
     {
         return $this->blockRegistry()::fromModel($this->data);
@@ -34,6 +27,13 @@ class PageBlock extends Model
     public function view(): string
     {
         return $this->blockRegistry()::view($this->content());
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'data' => 'array',
+        ];
     }
 
     private function blockRegistry(): BlockDefinition

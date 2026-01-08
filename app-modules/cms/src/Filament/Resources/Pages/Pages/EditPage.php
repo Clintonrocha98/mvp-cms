@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace ClintonRocha\CMS\Filament\Resources\Pages\Pages;
 
 use ClintonRocha\CMS\Filament\Resources\Pages\PageResource;
-use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 

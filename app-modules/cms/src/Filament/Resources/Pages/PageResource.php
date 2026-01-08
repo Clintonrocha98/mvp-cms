@@ -7,7 +7,6 @@ namespace ClintonRocha\CMS\Filament\Resources\Pages;
 use BackedEnum;
 use ClintonRocha\CMS\Filament\Resources\Pages\Pages\CreatePage;
 use ClintonRocha\CMS\Filament\Resources\Pages\Pages\EditPage;
-use ClintonRocha\CMS\Filament\Resources\Pages\Pages\EditPageContent;
 use ClintonRocha\CMS\Filament\Resources\Pages\Pages\ListPages;
 use ClintonRocha\CMS\Models\Page;
 use ClintonRocha\CMS\Registry\BlockRegistry;
@@ -43,7 +42,7 @@ class PageResource extends Resource
                     ->required()
                     ->live(onBlur: true)
                     ->afterStateUpdated(
-                        fn(?string $state, Set $set) => $set('slug', Str::slug($state))
+                        fn (?string $state, Set $set) => $set('slug', Str::slug($state))
                     ),
 
                 TextInput::make('slug')
@@ -56,14 +55,14 @@ class PageResource extends Resource
                     ->orderable('position')
                     ->schema([
                         Select::make('type')
-                            ->options(fn() => BlockRegistry::options())
+                            ->options(fn () => BlockRegistry::options())
                             ->required()
                             ->reactive(),
 
-                        Group::make(fn($get) => $get('type')
+                        Group::make(fn ($get) => $get('type')
                             ? BlockRegistry::resolve($get('type'))::schema()
                             : []
-                        )->reactive()
+                        )->reactive(),
                     ])
                     ->collapsed()
                     ->cloneable()

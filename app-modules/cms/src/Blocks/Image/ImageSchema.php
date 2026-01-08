@@ -5,20 +5,19 @@ declare(strict_types=1);
 namespace ClintonRocha\CMS\Blocks\Image;
 
 use ClintonRocha\CMS\Contracts\BlockSchema;
-use ClintonRocha\CMS\Registry\BlockRegistry;
+use ClintonRocha\CMS\Trait\HasVariants;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 
 final class ImageSchema implements BlockSchema
 {
+    use HasVariants;
+
     public static function schema(): array
     {
         return [
-            Select::make('data.variant')
-                ->label('Layout')
-                ->options(fn () => BlockRegistry::resolve('image')::variants())
-                ->required(),
+            self::variantField('image'),
 
             TextInput::make('data.src')
                 ->label('Imagem (URL)')

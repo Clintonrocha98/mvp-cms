@@ -5,21 +5,18 @@ declare(strict_types=1);
 namespace ClintonRocha\CMS\Blocks\Anchors;
 
 use ClintonRocha\CMS\Contracts\BlockSchema;
-use ClintonRocha\CMS\Registry\BlockRegistry;
+use ClintonRocha\CMS\Trait\HasVariants;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 
 final class AnchorsSchema implements BlockSchema
 {
+    use HasVariants;
+
     public static function schema(): array
     {
         return [
-            Select::make('data.variant')
-                ->label('Estilo')
-                ->options(fn () => BlockRegistry::resolve('anchors')::variants())
-                ->default('menu')
-                ->required(),
+            self::variantField('anchors'),
 
             Repeater::make('data.items')
                 ->label('Links')

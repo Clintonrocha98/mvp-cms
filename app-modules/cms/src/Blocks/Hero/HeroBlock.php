@@ -6,7 +6,6 @@ namespace ClintonRocha\CMS\Blocks\Hero;
 
 use ClintonRocha\CMS\Contracts\BlockData;
 use ClintonRocha\CMS\Contracts\BlockDefinition;
-use ClintonRocha\CMS\Filament\Schemas\HeroSchema;
 
 class HeroBlock implements BlockDefinition
 {

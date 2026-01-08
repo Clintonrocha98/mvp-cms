@@ -21,6 +21,27 @@ final class BlockRegistry
         return new $class;
     }
 
+    public static function variants(string $type): array
+    {
+        $path = base_path(
+            'app-modules/cms/resources/views/components/blocks/'.$type
+        );
+
+        if (! is_dir($path)) {
+            return [];
+        }
+
+        return collect(glob($path.'/*.blade.php'))
+            ->mapWithKeys(function ($file): array {
+                $variant = basename($file, '.blade.php');
+
+                return [
+                    $variant => Str::headline($variant),
+                ];
+            })
+            ->all();
+    }
+
     public static function options(): array
     {
         $base = base_path('app-modules/cms/src/Blocks');

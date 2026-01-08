@@ -2,23 +2,21 @@
 
 declare(strict_types=1);
 
-namespace ClintonRocha\CMS\Filament\Schemas;
+namespace ClintonRocha\CMS\Blocks\Hero;
 
 use ClintonRocha\CMS\Contracts\BlockSchema;
-use ClintonRocha\CMS\Registry\BlockRegistry;
-use Filament\Forms\Components\Select;
+use ClintonRocha\CMS\Trait\HasVariants;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 
 final class HeroSchema implements BlockSchema
 {
+    use HasVariants;
+
     public static function schema(): array
     {
         return [
-            Select::make('data.variant')
-                ->label('Layout')
-                ->options(fn () => BlockRegistry::resolve('hero')::variants())
-                ->required(),
+            self::variantField('hero'),
 
             TextInput::make('data.title')
                 ->label('Título')

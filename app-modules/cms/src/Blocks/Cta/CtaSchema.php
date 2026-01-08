@@ -5,21 +5,19 @@ declare(strict_types=1);
 namespace ClintonRocha\CMS\Blocks\Cta;
 
 use ClintonRocha\CMS\Contracts\BlockSchema;
-use ClintonRocha\CMS\Registry\BlockRegistry;
+use ClintonRocha\CMS\Trait\HasVariants;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 
 final class CtaSchema implements BlockSchema
 {
+    use HasVariants;
+
     public static function schema(): array
     {
         return [
-            Select::make('data.variant')
-                ->label('Estilo')
-                ->options(fn () => BlockRegistry::resolve('cta')::variants())
-                ->default('solid')
-                ->required(),
+            self::variantField('cta'),
 
             Select::make('data.align')
                 ->label('Alinhamento')

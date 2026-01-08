@@ -19,7 +19,7 @@ final class TextSchema implements BlockSchema
         return [
             Select::make('data.variant')
                 ->label('Tipo de texto')
-                ->options(fn () => BlockRegistry::resolve('text')::variants())
+                ->options(fn () => BlockRegistry::variants('text'))
                 ->required()
                 ->default('simple')
                 ->live()

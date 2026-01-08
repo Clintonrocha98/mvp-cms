@@ -1,9 +1,8 @@
 @props(['data' => []])
 
 @php
-    use ClintonRocha\CMS\ValueObjects\TestimonialItem;use ClintonRocha\CMS\ValueObjects\TestimonialsBlockData;
-    /** @var TestimonialsBlockData $data */
-    /** @var TestimonialItem $item */
+    /** @var \ClintonRocha\CMS\Blocks\Testimonials\TestimonialsData $data */
+    /** @var \ClintonRocha\CMS\Blocks\Testimonials\TestimonialItem $item */
 @endphp
 
 <section class="w-full py-20 bg-gray-50">
@@ -18,9 +17,9 @@
                 <div class="mt-6 flex items-center gap-4">
                     @if ($item->hasAvatar())
                         <img
-                            src="{{ $item->avatar }}"
-                            alt="{{ $item->name }}"
-                            class="h-12 w-12 rounded-full object-cover"
+                                src="{{ $item->avatar }}"
+                                alt="{{ $item->name }}"
+                                class="h-12 w-12 rounded-full object-cover"
                         >
                     @endif
 

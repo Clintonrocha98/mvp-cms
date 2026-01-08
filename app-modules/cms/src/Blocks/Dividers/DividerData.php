@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ClintonRocha\CMS\ValueObjects;
+namespace ClintonRocha\CMS\Blocks\Dividers;
 
 use ClintonRocha\CMS\Contracts\BlockData;
 
-final class DividerBlockData implements BlockData
+final class DividerData implements BlockData
 {
     public function __construct(
         public string $variant,
@@ -19,11 +19,6 @@ final class DividerBlockData implements BlockData
             variant: $data['variant'] ?? 'line',
             spacing: $data['spacing'] ?? 'md',
         );
-    }
-
-    public function view(): string
-    {
-        return 'blocks.divider.'.$this->variant;
     }
 
     public function spacingClass(): string

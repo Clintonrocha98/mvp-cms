@@ -1,8 +1,7 @@
 @props(['data' => []])
 
 @php
-    use ClintonRocha\CMS\ValueObjects\CtaBlockData;
-    /** @var CtaBlockData $data */
+    /** @var \ClintonRocha\CMS\Blocks\Cta\CtaData $data */
 @endphp
 
 <section class="w-full bg-indigo-600 py-16">
@@ -19,8 +18,8 @@
 
         <div class="mt-8">
             <a
-                href="{{ $data->url }}"
-                class="inline-block rounded-md bg-white px-6 py-3 text-base font-semibold text-indigo-600 hover:bg-indigo-50 transition"
+                    href="{{ $data->url }}"
+                    class="inline-block rounded-md bg-white px-6 py-3 text-base font-semibold text-indigo-600 hover:bg-indigo-50 transition"
             >
                 {{ $data->label }}
             </a>

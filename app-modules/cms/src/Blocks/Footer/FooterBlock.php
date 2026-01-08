@@ -2,44 +2,42 @@
 
 declare(strict_types=1);
 
-namespace ClintonRocha\CMS\Blocks\Anchors;
+namespace ClintonRocha\CMS\Blocks\Footer;
 
 use ClintonRocha\CMS\Contracts\BlockData;
 use ClintonRocha\CMS\Contracts\BlockDefinition;
 
-class AnchorBlock implements BlockDefinition
+class FooterBlock implements BlockDefinition
 {
     public static function type(): string
     {
-        return 'anchors';
+        return 'footer';
     }
 
     public static function variants(): array
     {
         return [
-            'menu' => 'Menu horizontal',
-            'list' => 'Lista',
-            'buttons' => 'Botões',
+            'default' => 'Padrão',
         ];
     }
 
     public static function label(): string
     {
-        return 'Âncoras';
+        return 'Rodapé';
     }
 
     public static function schema(): array
     {
-        return AnchorsSchema::schema();
+        return FooterSchema::schema();
     }
 
     public static function fromModel(array $data): BlockData
     {
-        return AnchorsData::fromArray($data);
+        return FooterData::fromArray($data);
     }
 
     public static function view(string $variant): string
     {
-        return 'cms::blocks.anchors.'.$variant;
+        return 'cms::blocks.footer.'.$variant;
     }
 }

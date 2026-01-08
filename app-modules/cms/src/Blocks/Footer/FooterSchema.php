@@ -2,18 +2,24 @@
 
 declare(strict_types=1);
 
-namespace ClintonRocha\CMS\Filament\Schemas;
+namespace ClintonRocha\CMS\Blocks\Footer;
 
 use ClintonRocha\CMS\Contracts\BlockSchema;
+use ClintonRocha\CMS\Registry\BlockRegistry;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 
-final class FooterBlockSchema implements BlockSchema
+final class FooterSchema implements BlockSchema
 {
     public static function schema(): array
     {
         return [
+            Select::make('data.variant')
+                ->label('Layout')
+                ->options(fn () => BlockRegistry::resolve('footer')::variants())
+                ->required(),
+
             TextInput::make('data.copyright')
                 ->label('Copyright')
                 ->placeholder('© 2026 Minha Empresa')

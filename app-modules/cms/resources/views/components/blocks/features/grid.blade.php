@@ -1,7 +1,6 @@
 @props(['data' => []])
 @php
-    use ClintonRocha\CMS\ValueObjects\FeaturesBlockData;
-    /** @var FeaturesBlockData $data */
+    /** @var \ClintonRocha\CMS\Blocks\Features\FeaturesData $data */
 @endphp
 
 <section class="w-full py-20 bg-white">

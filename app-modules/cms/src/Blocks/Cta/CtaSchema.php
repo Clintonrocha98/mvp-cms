@@ -2,24 +2,22 @@
 
 declare(strict_types=1);
 
-namespace ClintonRocha\CMS\Filament\Schemas;
+namespace ClintonRocha\CMS\Blocks\Cta;
 
 use ClintonRocha\CMS\Contracts\BlockSchema;
+use ClintonRocha\CMS\Registry\BlockRegistry;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 
-final class CtaBlockSchema implements BlockSchema
+final class CtaSchema implements BlockSchema
 {
     public static function schema(): array
     {
         return [
             Select::make('data.variant')
                 ->label('Estilo')
-                ->options([
-                    'solid' => 'Fundo sólido',
-                    'outline' => 'Fundo claro',
-                ])
+                ->options(fn () => BlockRegistry::resolve('cta')::variants())
                 ->default('solid')
                 ->required(),
 

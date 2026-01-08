@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ClintonRocha\CMS\ValueObjects;
+namespace ClintonRocha\CMS\Blocks\Image;
 
 use ClintonRocha\CMS\Contracts\BlockData;
 
-final readonly class ImageBlockData implements BlockData
+final readonly class ImageData implements BlockData
 {
     public function __construct(
         public string $src,
@@ -25,11 +25,6 @@ final readonly class ImageBlockData implements BlockData
             align: $data['align'] ?? 'center',
             size: $data['size'] ?? 'md',
         );
-    }
-
-    public function view(): string
-    {
-        return 'blocks.image.default';
     }
 
     public function containerWidth(): string

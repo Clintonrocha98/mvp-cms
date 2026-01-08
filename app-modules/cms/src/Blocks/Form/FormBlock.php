@@ -2,44 +2,43 @@
 
 declare(strict_types=1);
 
-namespace ClintonRocha\CMS\Blocks\Anchors;
+namespace ClintonRocha\CMS\Blocks\Form;
 
 use ClintonRocha\CMS\Contracts\BlockData;
 use ClintonRocha\CMS\Contracts\BlockDefinition;
 
-class AnchorBlock implements BlockDefinition
+class FormBlock implements BlockDefinition
 {
     public static function type(): string
     {
-        return 'anchors';
+        return 'form';
     }
 
     public static function variants(): array
     {
         return [
-            'menu' => 'Menu horizontal',
-            'list' => 'Lista',
-            'buttons' => 'Botões',
+            'card' => 'Card',
+            'inline' => 'Inline',
         ];
     }
 
     public static function label(): string
     {
-        return 'Âncoras';
+        return 'Formulário';
     }
 
     public static function schema(): array
     {
-        return AnchorsSchema::schema();
+        return FormSchema::schema();
     }
 
     public static function fromModel(array $data): BlockData
     {
-        return AnchorsData::fromArray($data);
+        return FormData::fromArray($data);
     }
 
     public static function view(string $variant): string
     {
-        return 'cms::blocks.anchors.'.$variant;
+        return 'cms::blocks.form.'.$variant;
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ClintonRocha\CMS\Filament\Schemas;
+namespace ClintonRocha\CMS\Blocks\Anchors;
 
 use ClintonRocha\CMS\Contracts\BlockSchema;
 use ClintonRocha\CMS\Registry\BlockRegistry;
@@ -10,7 +10,7 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 
-final class AnchorsBlockSchema implements BlockSchema
+final class AnchorsSchema implements BlockSchema
 {
     public static function schema(): array
     {

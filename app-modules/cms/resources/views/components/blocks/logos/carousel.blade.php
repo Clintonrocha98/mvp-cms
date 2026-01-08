@@ -1,9 +1,8 @@
 @props(['data' => []])
 
 @php
-    use ClintonRocha\CMS\ValueObjects\ClientLogoItem;use ClintonRocha\CMS\ValueObjects\LogosBlockData;
-    /** @var LogosBlockData $data */
-    /** @var ClientLogoItem $item */
+    /** @var \ClintonRocha\CMS\Blocks\Logos\LogosData $data */
+    /** @var \ClintonRocha\CMS\Blocks\Logos\ClientLogoItem $item */
 @endphp
 
 <section class="w-full py-16 bg-gray-50">

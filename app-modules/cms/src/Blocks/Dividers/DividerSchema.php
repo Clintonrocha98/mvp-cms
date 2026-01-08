@@ -2,23 +2,20 @@
 
 declare(strict_types=1);
 
-namespace ClintonRocha\CMS\Filament\Schemas;
+namespace ClintonRocha\CMS\Blocks\Dividers;
 
 use ClintonRocha\CMS\Contracts\BlockSchema;
+use ClintonRocha\CMS\Registry\BlockRegistry;
 use Filament\Forms\Components\Select;
 
-final class DividerBlockSchema implements BlockSchema
+final class DividerSchema implements BlockSchema
 {
     public static function schema(): array
     {
         return [
             Select::make('data.variant')
                 ->label('Estilo')
-                ->options([
-                    'line' => 'Linha',
-                    'space' => 'Espaço',
-                    'icon' => 'Ícone',
-                ])
+                ->options(fn () => BlockRegistry::resolve('divider')::variants())
                 ->default('line')
                 ->required(),
 

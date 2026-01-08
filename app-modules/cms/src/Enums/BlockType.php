@@ -24,15 +24,11 @@ enum BlockType: string implements HasLabel
     {
         return match ($this) {
             self::Hero => 'Hero',
-            self::Text => 'Texto',
-            self::CTA => 'Call to Action',
             self::Form => 'Formulário',
             self::Features => 'Recursos',
             self::Testimonials => 'Depoimentos',
             self::Logos => 'Logos',
             self::Image => 'Imagem',
-            self::Anchors => 'Âncoras',
-            self::Divider => 'Divisor',
             self::Footer => 'Rodapé',
         };
     }

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ClintonRocha\CMS\ValueObjects;
+namespace ClintonRocha\CMS\Blocks\Footer;
 
 use ClintonRocha\CMS\Contracts\BlockData;
 
-final readonly class FooterBlockData implements BlockData
+final readonly class FooterData implements BlockData
 {
     /** @var FooterLinkItem[] */
     public array $links;
@@ -47,11 +47,6 @@ final readonly class FooterBlockData implements BlockData
             policies: $data['policies'] ?? [],
             copyright: $data['copyright'] ?? '',
         );
-    }
-
-    public function view(): string
-    {
-        return 'blocks.footer.default';
     }
 
     public function toArray(): array

@@ -1,6 +1,6 @@
+@props(['data' => []])
 @php
-    use ClintonRocha\CMS\ValueObjects\HeroBlockData;
-    /** @var HeroBlockData $data  */
+    /** @var HeroData $data  */
 @endphp
 <section class="w-full bg-white py-24">
     <div class="mx-auto max-w-4xl px-6 text-center">

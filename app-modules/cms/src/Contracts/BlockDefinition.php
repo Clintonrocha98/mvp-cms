@@ -16,5 +16,5 @@ interface BlockDefinition
 
     public static function fromModel(array $data): BlockData;
 
-    public static function view(BlockData $data): string;
+    public static function view(string $variant): string;
 }

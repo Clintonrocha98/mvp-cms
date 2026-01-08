@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ClintonRocha\CMS\ValueObjects;
+namespace ClintonRocha\CMS\Blocks\Footer;
 
 final class FooterLinkItem
 {

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ClintonRocha\CMS\ValueObjects;
+namespace ClintonRocha\CMS\Blocks\Testimonials;
 
 use ClintonRocha\CMS\Contracts\BlockData;
 
-final class LogosBlockData implements BlockData
+final readonly class TestimonialsData implements BlockData
 {
-    /** @var ClientLogoItem[] */
+    /** @var TestimonialItem[] */
     public array $items;
 
     public function __construct(
@@ -17,7 +17,7 @@ final class LogosBlockData implements BlockData
         public int $columns,
     ) {
         $this->items = array_map(
-            ClientLogoItem::fromArray(...),
+            TestimonialItem::fromArray(...),
             $items
         );
     }
@@ -27,22 +27,20 @@ final class LogosBlockData implements BlockData
         return new self(
             items: $data['items'] ?? [],
             variant: $data['variant'] ?? 'grid',
-            columns: (int) ($data['columns'] ?? 5),
+            columns: (int) ($data['columns'] ?? 3),
         );
     }
 
     public function view(): string
     {
-        return 'blocks.logos.'.$this->variant;
+        return 'blocks.testimonials.'.$this->variant;
     }
 
     public function gridClass(): string
     {
         return match ($this->columns) {
-            3 => 'grid-cols-2 sm:grid-cols-3',
-            4 => 'grid-cols-2 sm:grid-cols-4',
-            6 => 'grid-cols-3 sm:grid-cols-6',
-            default => 'grid-cols-2 sm:grid-cols-5',
+            2 => 'grid-cols-1 sm:grid-cols-2',
+            default => 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
         };
     }
 
@@ -50,7 +48,7 @@ final class LogosBlockData implements BlockData
     {
         return [
             'items' => array_map(
-                fn (ClientLogoItem $item) => $item->toArray(),
+                fn (TestimonialItem $item) => $item->toArray(),
                 $this->items
             ),
             'variant' => $this->variant,

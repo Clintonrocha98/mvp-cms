@@ -41,6 +41,6 @@ final class TextBlock implements BlockDefinition
     {
         // TODO: toda view precisa ter 'cms::blocks.' preciso garantir isso em todos os blocks!
         /** @var TextData $data */
-        return 'cms::blocks.text.' . $data->variant;
+        return 'cms::blocks.text.'.$data->variant;
     }
 }

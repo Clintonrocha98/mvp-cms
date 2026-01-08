@@ -87,7 +87,6 @@ class PageResource extends Resource
                     ->label('Blocks')
                     ->counts('blocks')
                     ->sortable(),
-
             ])
             ->recordActions([
                 EditAction::make(),

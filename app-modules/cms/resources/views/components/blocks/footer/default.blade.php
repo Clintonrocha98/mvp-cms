@@ -1,10 +1,9 @@
 @props(['data' => []])
 
 @php
-    use ClintonRocha\CMS\ValueObjects\FooterBlockData;use ClintonRocha\CMS\ValueObjects\FooterLinkItem;use ClintonRocha\CMS\ValueObjects\FooterSocialItem;
-    /** @var FooterLinkItem $link */
-    /** @var FooterSocialItem $social */
-    /** @var FooterBlockData $data */
+    /** @var \ClintonRocha\CMS\Blocks\Footer\FooterLinkItem $link */
+    /** @var \ClintonRocha\CMS\Blocks\Footer\FooterSocialItem $social */
+    /** @var \ClintonRocha\CMS\Blocks\Footer\FooterData $data */
 @endphp
 
 <footer class="w-full border-t border-gray-200 bg-gray-50">
@@ -26,9 +25,9 @@
             <div class="flex gap-4">
                 @foreach ($data->socials as $social)
                     <a
-                        href="{{ $social->url }}"
-                        aria-label="{{ $social->label }}"
-                        class="text-gray-500 hover:text-indigo-600"
+                            href="{{ $social->url }}"
+                            aria-label="{{ $social->label }}"
+                            class="text-gray-500 hover:text-indigo-600"
                     >
                         <span class="{{ $social->iconClass() }} text-xl"></span>
                     </a>
@@ -38,7 +37,7 @@
 
         {{-- Políticas + copyright --}}
         <div
-            class="flex flex-col gap-4 border-t border-gray-200 pt-6 text-sm text-gray-500 sm:flex-row sm:items-center sm:justify-between">
+                class="flex flex-col gap-4 border-t border-gray-200 pt-6 text-sm text-gray-500 sm:flex-row sm:items-center sm:justify-between">
             @if ($data->policies)
                 <div class="flex flex-wrap gap-4">
                     @foreach ($data->policies as $policy)

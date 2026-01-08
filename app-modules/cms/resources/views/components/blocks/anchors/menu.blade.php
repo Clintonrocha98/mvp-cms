@@ -1,9 +1,8 @@
 @props(['data' => []])
 
 @php
-    use ClintonRocha\CMS\ValueObjects\AnchorItem;use ClintonRocha\CMS\ValueObjects\AnchorsData;
-    /** @var AnchorsData $data */
-    /** @var AnchorItem $item */
+    /** @var \ClintonRocha\CMS\Blocks\Anchors\AnchorsData $data */
+    /** @var \ClintonRocha\CMS\Blocks\Anchors\AnchorItem $item */
 @endphp
 
 <nav class="w-full border-b border-gray-200 bg-white">

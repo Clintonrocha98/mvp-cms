@@ -1,16 +1,15 @@
 @props(['data' => []])
 
 @php
-    use ClintonRocha\CMS\ValueObjects\ImageBlockData;
-    /** @var ImageBlockData $data */
+    /** @var \ClintonRocha\CMS\Blocks\Image\ImageData $data */
 @endphp
 
 <section class="w-full py-16">
     <div class="mx-auto px-6 {{ $data->containerWidth() }} {{ $data->alignClass() }}">
         <img
-            src="{{ $data->src }}"
-            alt="{{ $data->alt }}"
-            class="{{ $data->imageAlignClass() }} rounded-xl shadow-sm"
+                src="{{ $data->src }}"
+                alt="{{ $data->alt }}"
+                class="{{ $data->imageAlignClass() }} rounded-xl shadow-sm"
         >
 
         @if ($data->caption)

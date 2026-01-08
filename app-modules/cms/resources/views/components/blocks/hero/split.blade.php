@@ -1,6 +1,6 @@
+@props(['data' => []])
 @php
-    use ClintonRocha\CMS\ValueObjects\HeroBlockData;
-    /** @var HeroBlockData $data  */
+    /** @var \ClintonRocha\CMS\Blocks\Hero\HeroData $data  */
 @endphp
 <section class="w-full bg-white py-24">
     <div class="mx-auto max-w-7xl px-6 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
@@ -18,8 +18,8 @@
             @if ($data->ctaLabel && $data->ctaUrl)
                 <div class="mt-8">
                     <a
-                        href="{{ $data->ctaUrl }}"
-                        class="inline-flex items-center rounded-md bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-indigo-500 transition"
+                            href="{{ $data->ctaUrl }}"
+                            class="inline-flex items-center rounded-md bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-indigo-500 transition"
                     >
                         {{ $data->ctaLabel }}
                     </a>
@@ -30,9 +30,9 @@
         @if ($data->image)
             <div class="flex justify-center">
                 <img
-                    src="{{ $data->image }}"
-                    alt=""
-                    class="w-full max-w-md rounded-xl shadow-lg"
+                        src="{{ $data->image }}"
+                        alt=""
+                        class="w-full max-w-md rounded-xl shadow-lg"
                 >
             </div>
         @endif

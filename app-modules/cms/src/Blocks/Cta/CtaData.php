@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ClintonRocha\CMS\ValueObjects;
+namespace ClintonRocha\CMS\Blocks\Cta;
 
 use ClintonRocha\CMS\Contracts\BlockData;
 
-final class CtaBlockData implements BlockData
+final class CtaData implements BlockData
 {
     public function __construct(
         public string $title,
@@ -27,11 +27,6 @@ final class CtaBlockData implements BlockData
             variant: $data['variant'] ?? 'solid',
             align: $data['align'] ?? 'center',
         );
-    }
-
-    public function view(): string
-    {
-        return 'blocks.cta.'.$this->variant;
     }
 
     public function alignClass(): string

@@ -8,7 +8,7 @@ use ClintonRocha\CMS\Contracts\BlockData;
 
 final class HeroData implements BlockData
 {
-    private function __construct(
+    public function __construct(
         public string $title,
         public ?string $subtitle,
         public string $variant,
@@ -20,12 +20,12 @@ final class HeroData implements BlockData
     public static function fromArray(array $data): self
     {
         return new self(
-            $data['title'] ?? '',
-            $data['subtitle'] ?? null,
-            $data['variant'] ?? 'center',
-            $data['cta_label'] ?? null,
-            $data['cta_url'] ?? null,
-            $data['image'] ?? null,
+            title: $data['title'] ?? '',
+            subtitle: $data['subtitle'] ?? null,
+            variant: $data['variant'] ?? 'center',
+            ctaLabel: $data['cta_label'] ?? null,
+            ctaUrl: $data['cta_url'] ?? null,
+            image: $data['image'] ?? null,
         );
     }
 

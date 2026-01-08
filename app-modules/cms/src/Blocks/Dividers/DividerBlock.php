@@ -2,44 +2,44 @@
 
 declare(strict_types=1);
 
-namespace ClintonRocha\CMS\Blocks\Anchors;
+namespace ClintonRocha\CMS\Blocks\Dividers;
 
 use ClintonRocha\CMS\Contracts\BlockData;
 use ClintonRocha\CMS\Contracts\BlockDefinition;
 
-class AnchorBlock implements BlockDefinition
+class DividerBlock implements BlockDefinition
 {
     public static function type(): string
     {
-        return 'anchors';
+        return 'divider';
     }
 
     public static function variants(): array
     {
         return [
-            'menu' => 'Menu horizontal',
-            'list' => 'Lista',
-            'buttons' => 'Botões',
+            'line' => 'Linha',
+            'space' => 'Espaço',
+            'icon' => 'Ícone',
         ];
     }
 
     public static function label(): string
     {
-        return 'Âncoras';
+        return 'Divisor';
     }
 
     public static function schema(): array
     {
-        return AnchorsSchema::schema();
+        return DividerSchema::schema();
     }
 
     public static function fromModel(array $data): BlockData
     {
-        return AnchorsData::fromArray($data);
+        return DividerData::fromArray($data);
     }
 
     public static function view(string $variant): string
     {
-        return 'cms::blocks.anchors.'.$variant;
+        return 'cms::blocks.divider.'.$variant;
     }
 }

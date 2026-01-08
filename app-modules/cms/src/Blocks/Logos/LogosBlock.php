@@ -2,44 +2,43 @@
 
 declare(strict_types=1);
 
-namespace ClintonRocha\CMS\Blocks\Anchors;
+namespace ClintonRocha\CMS\Blocks\Logos;
 
 use ClintonRocha\CMS\Contracts\BlockData;
 use ClintonRocha\CMS\Contracts\BlockDefinition;
 
-class AnchorBlock implements BlockDefinition
+class LogosBlock implements BlockDefinition
 {
     public static function type(): string
     {
-        return 'anchors';
+        return 'logos';
     }
 
     public static function variants(): array
     {
         return [
-            'menu' => 'Menu horizontal',
-            'list' => 'Lista',
-            'buttons' => 'Botões',
+            'grid' => 'Grid',
+            'carousel' => 'Linha contínua',
         ];
     }
 
     public static function label(): string
     {
-        return 'Âncoras';
+        return 'Logos de Clientes';
     }
 
     public static function schema(): array
     {
-        return AnchorsSchema::schema();
+        return LogosSchema::schema();
     }
 
     public static function fromModel(array $data): BlockData
     {
-        return AnchorsData::fromArray($data);
+        return LogosData::fromArray($data);
     }
 
     public static function view(string $variant): string
     {
-        return 'cms::blocks.anchors.'.$variant;
+        return 'cms::blocks.logos.'.$variant;
     }
 }

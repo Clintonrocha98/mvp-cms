@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ClintonRocha\CMS\ValueObjects;
+namespace ClintonRocha\CMS\Blocks\Form;
 
 use ClintonRocha\CMS\Contracts\BlockData;
 
-final readonly class FormBlockData implements BlockData
+final readonly class FormData implements BlockData
 {
     public function __construct(
         public string $formId,
@@ -25,11 +25,6 @@ final readonly class FormBlockData implements BlockData
             submitLabel: $data['submit_label'] ?? 'Enviar',
             variant: $data['variant'] ?? 'card',
         );
-    }
-
-    public function view(): string
-    {
-        return 'blocks.form.'.$this->variant;
     }
 
     public function toArray(): array

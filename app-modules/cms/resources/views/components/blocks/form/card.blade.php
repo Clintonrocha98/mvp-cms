@@ -1,9 +1,8 @@
 @props(['data' => []])
 
 @php
-    use ClintonRocha\CMS\Forms\FormRegistry;use ClintonRocha\CMS\ValueObjects\FormBlockData;
-    /** @var FormBlockData $data */
-    $form = FormRegistry::get($data->formId);
+    /** @var \ClintonRocha\CMS\Blocks\Form\FormData $data */
+    $form = \ClintonRocha\CMS\Forms\FormRegistry::get($data->formId);
 @endphp
 
 <section class="w-full py-16">
@@ -19,9 +18,9 @@
 
             @foreach ($form->fields() as $name => $label)
                 <input
-                    name="{{ $name }}"
-                    placeholder="{{ $label }}"
-                    class="w-full rounded-md border px-3 py-2"
+                        name="{{ $name }}"
+                        placeholder="{{ $label }}"
+                        class="w-full rounded-md border px-3 py-2"
                 >
             @endforeach
 

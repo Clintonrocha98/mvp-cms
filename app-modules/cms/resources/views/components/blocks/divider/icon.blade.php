@@ -1,8 +1,7 @@
 @props(['data' => []])
 
 @php
-    use ClintonRocha\CMS\ValueObjects\DividerBlockData;
-    /** @var DividerBlockData $data */
+    /** @var \ClintonRocha\CMS\Blocks\Dividers\DividerData $data */
 @endphp
 
 <div class="flex items-center justify-center {{ $data->spacingClass() }}">

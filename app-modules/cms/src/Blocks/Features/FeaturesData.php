@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ClintonRocha\CMS\ValueObjects;
+namespace ClintonRocha\CMS\Blocks\Features;
 
 use ClintonRocha\CMS\Contracts\BlockData;
 
-final readonly class FeaturesBlockData implements BlockData
+final readonly class FeaturesData implements BlockData
 {
     public function __construct(
         public array $items,
@@ -21,11 +21,6 @@ final readonly class FeaturesBlockData implements BlockData
             variant: $data['variant'] ?? 'grid',
             columns: (int) ($data['columns'] ?? 3),
         );
-    }
-
-    public function view(): string
-    {
-        return 'blocks.features.'.$this->variant;
     }
 
     public function gridClass(): string

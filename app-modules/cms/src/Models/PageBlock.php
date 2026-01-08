@@ -26,7 +26,9 @@ class PageBlock extends Model
 
     public function view(): string
     {
-        return $this->blockRegistry()::view($this->content());
+        $variant = $this->content()->variant ?? '';
+
+        return $this->blockRegistry()::view($variant);
     }
 
     protected function casts(): array

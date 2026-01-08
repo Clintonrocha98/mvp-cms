@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ClintonRocha\CMS\ValueObjects;
+namespace ClintonRocha\CMS\Blocks\Anchors;
 
 use ClintonRocha\CMS\Contracts\BlockData;
 

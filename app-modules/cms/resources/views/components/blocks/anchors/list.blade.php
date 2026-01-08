@@ -1,9 +1,8 @@
 @props(['data' => []])
 
 @php
-    use ClintonRocha\CMS\ValueObjects\AnchorItem;use ClintonRocha\CMS\ValueObjects\AnchorsData;
-    /** @var AnchorsData $data */
-    /** @var AnchorItem $item */
+    /** @var \ClintonRocha\CMS\Blocks\Anchors\AnchorsData $data */
+    /** @var \ClintonRocha\CMS\Blocks\Anchors\AnchorItem $item */
 @endphp
 
 <section class="w-full py-6 bg-gray-50">

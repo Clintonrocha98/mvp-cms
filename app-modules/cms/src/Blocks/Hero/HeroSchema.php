@@ -5,21 +5,19 @@ declare(strict_types=1);
 namespace ClintonRocha\CMS\Filament\Schemas;
 
 use ClintonRocha\CMS\Contracts\BlockSchema;
+use ClintonRocha\CMS\Registry\BlockRegistry;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 
-final class HeroBlockSchema implements BlockSchema
+final class HeroSchema implements BlockSchema
 {
     public static function schema(): array
     {
         return [
             Select::make('data.variant')
                 ->label('Layout')
-                ->options([
-                    'center' => 'Centralizado',
-                    'split' => 'Texto + Imagem',
-                ])
+                ->options(fn () => BlockRegistry::resolve('hero')::variants())
                 ->required(),
 
             TextInput::make('data.title')

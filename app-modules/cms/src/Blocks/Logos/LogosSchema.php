@@ -2,58 +2,52 @@
 
 declare(strict_types=1);
 
-namespace ClintonRocha\CMS\Filament\Schemas;
+namespace ClintonRocha\CMS\Blocks\Logos;
 
 use ClintonRocha\CMS\Contracts\BlockSchema;
+use ClintonRocha\CMS\Registry\BlockRegistry;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 
-final class TestimonialsBlockSchema implements BlockSchema
+final class LogosSchema implements BlockSchema
 {
     public static function schema(): array
     {
         return [
             Select::make('data.variant')
                 ->label('Layout')
-                ->options([
-                    'grid' => 'Grid',
-                    'cards' => 'Cards',
-                ])
-                ->default('grid')
+                ->options(fn () => BlockRegistry::resolve('logos')::variants())
                 ->required(),
 
             Select::make('data.columns')
                 ->label('Colunas')
                 ->options([
-                    2 => '2 colunas',
                     3 => '3 colunas',
+                    4 => '4 colunas',
+                    5 => '5 colunas',
+                    6 => '6 colunas',
                 ])
-                ->default(3)
+                ->default(5)
                 ->visible(fn ($get) => $get('data.variant') === 'grid'),
 
             Repeater::make('data.items')
-                ->label('Depoimentos')
+                ->label('Clientes / Logos')
                 ->schema([
-                    Textarea::make('quote')
-                        ->label('Depoimento')
-                        ->rows(4)
-                        ->required(),
-
                     TextInput::make('name')
                         ->label('Nome')
                         ->required(),
 
-                    TextInput::make('role')
-                        ->label('Cargo / Empresa'),
+                    TextInput::make('logo')
+                        ->label('Logo (URL)')
+                        ->required(),
 
-                    TextInput::make('avatar')
-                        ->label('Avatar (URL)'),
+                    TextInput::make('url')
+                        ->label('Link (opcional)')
+                        ->url(),
                 ])
                 ->minItems(1)
                 ->required(),
         ];
-
     }
 }

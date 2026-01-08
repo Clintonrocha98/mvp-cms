@@ -14,15 +14,6 @@ class AnchorBlock implements BlockDefinition
         return 'anchors';
     }
 
-    public static function variants(): array
-    {
-        return [
-            'menu' => 'Menu horizontal',
-            'list' => 'Lista',
-            'buttons' => 'Botões',
-        ];
-    }
-
     public static function label(): string
     {
         return 'Âncoras';

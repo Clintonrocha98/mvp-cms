@@ -14,13 +14,6 @@ class ImageBlock implements BlockDefinition
         return 'image';
     }
 
-    public static function variants(): array
-    {
-        return [
-            'default' => 'Padrão',
-        ];
-    }
-
     public static function label(): string
     {
         return 'Imagem';

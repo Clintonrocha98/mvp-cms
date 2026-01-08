@@ -14,14 +14,6 @@ class LogosBlock implements BlockDefinition
         return 'logos';
     }
 
-    public static function variants(): array
-    {
-        return [
-            'grid' => 'Grid',
-            'carousel' => 'Linha contínua',
-        ];
-    }
-
     public static function label(): string
     {
         return 'Logos de Clientes';

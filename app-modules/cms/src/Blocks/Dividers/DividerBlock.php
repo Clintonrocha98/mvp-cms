@@ -14,15 +14,6 @@ class DividerBlock implements BlockDefinition
         return 'divider';
     }
 
-    public static function variants(): array
-    {
-        return [
-            'line' => 'Linha',
-            'space' => 'Espaço',
-            'icon' => 'Ícone',
-        ];
-    }
-
     public static function label(): string
     {
         return 'Divisor';

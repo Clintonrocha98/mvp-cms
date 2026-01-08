@@ -14,14 +14,6 @@ class CtaBlock implements BlockDefinition
         return 'cta';
     }
 
-    public static function variants(): array
-    {
-        return [
-            'solid' => 'Fundo sólido',
-            'outline' => 'Fundo claro',
-        ];
-    }
-
     public static function label(): string
     {
         return 'Call to Action';

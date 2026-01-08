@@ -14,14 +14,6 @@ class TestmonialBlock implements BlockDefinition
         return 'testimonials';
     }
 
-    public static function variants(): array
-    {
-        return [
-            'grid' => 'Grid',
-            'cards' => 'Cards',
-        ];
-    }
-
     public static function label(): string
     {
         return 'Testimonials';

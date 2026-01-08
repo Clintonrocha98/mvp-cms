@@ -14,14 +14,6 @@ final class TextBlock implements BlockDefinition
         return 'text';
     }
 
-    public static function variants(): array
-    {
-        return [
-            'simple' => 'Texto simples',
-            'rich' => 'Texto rico',
-        ];
-    }
-
     public static function label(): string
     {
         return 'Text';

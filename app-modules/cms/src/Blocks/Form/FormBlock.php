@@ -14,14 +14,6 @@ class FormBlock implements BlockDefinition
         return 'form';
     }
 
-    public static function variants(): array
-    {
-        return [
-            'card' => 'Card',
-            'inline' => 'Inline',
-        ];
-    }
-
     public static function label(): string
     {
         return 'Formulário';

@@ -8,8 +8,6 @@ interface BlockDefinition
 {
     public static function type(): string;
 
-    public static function variants(): array;
-
     public static function label(): string;
 
     public static function schema(): array;

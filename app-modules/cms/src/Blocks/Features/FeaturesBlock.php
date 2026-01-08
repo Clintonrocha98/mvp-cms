@@ -6,21 +6,12 @@ namespace ClintonRocha\CMS\Blocks\Features;
 
 use ClintonRocha\CMS\Contracts\BlockData;
 use ClintonRocha\CMS\Contracts\BlockDefinition;
-use ClintonRocha\CMS\Filament\Schemas\FeaturesSchema;
 
 class FeaturesBlock implements BlockDefinition
 {
     public static function type(): string
     {
         return 'features';
-    }
-
-    public static function variants(): array
-    {
-        return [
-            'grid' => 'Grid',
-            'columns' => 'Colunas',
-        ];
     }
 
     public static function label(): string

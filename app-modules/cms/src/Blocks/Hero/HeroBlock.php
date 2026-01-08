@@ -14,14 +14,6 @@ class HeroBlock implements BlockDefinition
         return 'hero';
     }
 
-    public static function variants(): array
-    {
-        return [
-            'center' => 'Centralizado',
-            'split' => 'Texto + Imagem',
-        ];
-    }
-
     public static function label(): string
     {
         return 'Hero';

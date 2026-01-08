@@ -14,13 +14,6 @@ class FooterBlock implements BlockDefinition
         return 'footer';
     }
 
-    public static function variants(): array
-    {
-        return [
-            'default' => 'Padrão',
-        ];
-    }
-
     public static function label(): string
     {
         return 'Rodapé';

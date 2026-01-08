@@ -2,6 +2,8 @@
 @php
     /** @var \ClintonRocha\CMS\Blocks\{{ name }}\{{ name }}Data $data */
 @endphp
-<div>
-    <p>example</p>
-</div>
+<section class="py-12">
+    <div class="mx-auto max-w-4xl">
+        {{-- {{ name }} / {{ variant }} --}}
+    </div>
+</section>

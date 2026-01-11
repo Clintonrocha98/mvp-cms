@@ -27,6 +27,11 @@ final readonly class CmsPaths
         return config('cms.views.path', resource_path('views/components/blocks'));
     }
 
+    public function viewsNamespace(): string
+    {
+        return config('cms.views.namespace', 'components.blocks');
+    }
+
     public function stubsPath(): string
     {
         $project = config('cms.stubs.path');

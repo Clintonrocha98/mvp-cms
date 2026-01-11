@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace ClintonRocha\CMS\Blocks\{{ name }};
+namespace {{ namespace }}\{{ name }};
 
 use ClintonRocha\CMS\Contracts\BlockSchema;
 

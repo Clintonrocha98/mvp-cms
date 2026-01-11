@@ -8,7 +8,7 @@ use Illuminate\Filesystem\Filesystem;
 
 final readonly class StubGenerator
 {
-    public function __construct(private Filesystem $files)
+    public function __construct(private Filesystem $files, private CmsPaths $paths)
     {
     }
 
@@ -20,7 +20,7 @@ final readonly class StubGenerator
      */
     public function generateFromStub(string $stub, string $target, array $data = [], bool $force = false): array
     {
-        $stubPath = base_path('app-modules/cms/stubs/'.$stub);
+        $stubPath = $this->paths->stubsPath().DIRECTORY_SEPARATOR.$stub;
 
         if (!$this->files->exists($stubPath)) {
             throw new \RuntimeException(sprintf('Stub not found: %s', $stubPath));

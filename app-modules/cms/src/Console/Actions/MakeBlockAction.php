@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ClintonRocha\CMS\Console\Actions;
 
 use ClintonRocha\CMS\Console\Helpers\StubGenerator;
+use ClintonRocha\CMS\Console\Helpers\CmsPaths;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 
@@ -12,7 +13,8 @@ final readonly class MakeBlockAction
 {
     public function __construct(
         private StubGenerator $stubs,
-        private Filesystem $files
+        private Filesystem $files,
+        private CmsPaths $paths
     ) {
     }
 
@@ -28,8 +30,8 @@ final readonly class MakeBlockAction
         $overwritten = [];
         $skipped = [];
 
-        $blockPath = base_path('app-modules/cms/src/Blocks/'.$name);
-        $viewPath = base_path('app-modules/cms/resources/views/components/blocks/'.$slug);
+        $blockPath = rtrim($this->paths->blockPath(), DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$name;
+        $viewPath = rtrim($this->paths->viewsPath(), DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$slug;
 
         if (!$this->files->isDirectory($blockPath)) {
             $this->files->makeDirectory($blockPath, 0755, true);
@@ -42,6 +44,7 @@ final readonly class MakeBlockAction
         $res = $this->stubs->generateFromStub('block.stub', sprintf('%s/%sBlock.php', $blockPath, $name), [
             'name' => $name,
             'slug' => $slug,
+            'namespace' => $this->paths->blockNamespace(),
         ], $force);
 
         $created = array_merge($created, $res['created']);
@@ -50,6 +53,7 @@ final readonly class MakeBlockAction
 
         $res = $this->stubs->generateFromStub('data.stub', sprintf('%s/%sData.php', $blockPath, $name), [
             'name' => $name,
+            'namespace' => $this->paths->blockNamespace(),
         ], $force);
 
         $created = array_merge($created, $res['created']);
@@ -59,6 +63,7 @@ final readonly class MakeBlockAction
         $res = $this->stubs->generateFromStub('schema.stub', sprintf('%s/%sSchema.php', $blockPath, $name), [
             'name' => $name,
             'slug' => $slug,
+            'namespace' => $this->paths->blockNamespace(),
         ], $force);
 
         $created = array_merge($created, $res['created']);

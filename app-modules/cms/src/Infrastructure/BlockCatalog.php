@@ -21,9 +21,8 @@ final class BlockCatalog
             return self::$variants[$type];
         }
 
-        $path = base_path(
-            'app-modules/cms/resources/views/components/blocks/'.$type
-        );
+        $viewsPath = config('cms.views.path', resource_path('views/components/blocks'));
+        $path = rtrim($viewsPath, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$type;
 
         if (! is_dir($path)) {
             return self::$variants[$type] = [];
@@ -46,7 +45,8 @@ final class BlockCatalog
             return self::$options;
         }
 
-        $base = base_path('app-modules/cms/src/Blocks');
+        $blocksPath = config('cms.blocks.path', app_path('Blocks'));
+        $base = rtrim($blocksPath, DIRECTORY_SEPARATOR);
 
         return self::$options = collect(glob($base.'/*/*Block.php'))
             ->mapWithKeys(function (string $path): array {
@@ -63,18 +63,20 @@ final class BlockCatalog
     private static function classFromPath(string $path): string
     {
         $path = realpath($path);
-        $srcPath = realpath(base_path('app-modules/cms/src'));
+        $blocksPath = realpath(config('cms.blocks.path', app_path('Blocks')));
 
         $relative = str_replace(
-            $srcPath.DIRECTORY_SEPARATOR,
+            $blocksPath.DIRECTORY_SEPARATOR,
             '',
             $path
         );
 
-        return 'ClintonRocha\\CMS\\'.str_replace(
+        $classPath = str_replace(
             [DIRECTORY_SEPARATOR, '.php'],
             ['\\', ''],
             $relative
         );
+
+        return rtrim(config('cms.blocks.namespace', 'App\\Blocks'), '\\').'\\'.$classPath;
     }
 }

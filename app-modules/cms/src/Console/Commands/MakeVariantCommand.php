@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ClintonRocha\CMS\Console\Commands;
 
 use ClintonRocha\CMS\Console\Actions\MakeVariantAction;
+use ClintonRocha\CMS\Console\Helpers\CmsPaths;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Illuminate\Filesystem\Filesystem;
@@ -26,7 +27,7 @@ class MakeVariantCommand extends Command implements PromptsForMissingInput
     {
         return [
             'block' => function () {
-                $dir = base_path('app-modules/cms/resources/views/components/blocks');
+                $dir = rtrim(config('cms.views.path', resource_path('views/components/blocks')), DIRECTORY_SEPARATOR);
 
                 $choices = [];
                 if (is_dir($dir)) {
@@ -51,7 +52,7 @@ class MakeVariantCommand extends Command implements PromptsForMissingInput
         ];
     }
 
-    public function handle(MakeVariantAction $action, Filesystem $files): int
+    public function handle(MakeVariantAction $action, Filesystem $files, CmsPaths $paths): int
     {
         $block = $this->argument('block');
         $variant = $this->argument('variant');
@@ -59,7 +60,7 @@ class MakeVariantCommand extends Command implements PromptsForMissingInput
         $blockSlug = Str::kebab($block);
         $variant = Str::kebab($variant);
 
-        $viewPath = base_path('app-modules/cms/resources/views/components/blocks/'.$blockSlug);
+        $viewPath = rtrim($paths->viewsPath(), DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$blockSlug;
 
         if (!$files->isDirectory($viewPath)) {
             $this->components->error(sprintf("O bloco '%s' não existe.", $blockSlug));

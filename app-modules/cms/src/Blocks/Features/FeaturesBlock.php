@@ -31,6 +31,6 @@ class FeaturesBlock implements BlockDefinition
 
     public function view(string $variant): string
     {
-        return 'cms::blocks.features.'.$variant;
+        return config('cms.views.namespace', 'cms::blocks').'.features.'.$variant;
     }
 }

@@ -20,14 +20,13 @@ final class BlockFactory
 
         $studly = Str::studly($type);
 
-        $nameSpace = rtrim((string) config('cms.blocks.namespace', 'ClintonRocha\\CMS\\Blocks'), '\\');
+        $nameSpace = mb_rtrim((string) config('cms.blocks.namespace', 'ClintonRocha\\CMS\\Blocks'), '\\');
 
         $class = $nameSpace.'\\'.$studly.'\\'.$studly.'Block';
 
-        if (!class_exists($class)) {
+        if (! class_exists($class)) {
             throw new InvalidArgumentException(sprintf('Block %s não encontrado', $type));
         }
-
 
         return self::$instances[$type] = new $class;
     }

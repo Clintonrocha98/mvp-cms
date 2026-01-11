@@ -8,6 +8,9 @@ return [
 
     'views' => [
         'path' => resource_path('views/components/blocks'),
+        // View namespace/prefix used when resolving block views (dot notation)
+        // e.g. 'components.blocks' for app views
+        'namespace' => 'components.blocks',
     ],
 
     'stubs' => [
